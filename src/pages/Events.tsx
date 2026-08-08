@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
-import { useAuthStore } from '@/stores/auth'
 
 interface EventItem {
   id: string
@@ -24,7 +23,6 @@ interface EventItem {
  * Validates: Requirements 12.5
  */
 export default function Events() {
-  const { user } = useAuthStore()
   const [events, setEvents] = useState<EventItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -61,17 +59,6 @@ export default function Events() {
   useEffect(() => {
     loadEvents()
   }, [loadEvents])
-
-  function formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleDateString(undefined, {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  }
 
   function isUpcoming(dateStr: string): boolean {
     return new Date(dateStr) > new Date()

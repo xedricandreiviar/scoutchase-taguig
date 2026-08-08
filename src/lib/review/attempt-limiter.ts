@@ -75,8 +75,8 @@ export function getSubmissionStatus(
  * @returns The resulting service log status
  */
 export function getServiceLogStatus(
-  attemptNumber: number,
-  maxAttempts: number,
+  _attemptNumber: number,
+  _maxAttempts: number,
   action: ReviewAction
 ): ServiceLogStatus {
   if (action === 'approve') {

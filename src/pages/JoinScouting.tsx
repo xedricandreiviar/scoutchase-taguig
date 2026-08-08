@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth'
-import { supabase } from '@/lib/supabase'
 
 /**
  * Local units data for Taguig City Council.
@@ -59,7 +58,7 @@ const LOCAL_UNITS = [
 export default function JoinScouting() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const { user, isAuthenticated } = useAuthStore()
+  const { isAuthenticated } = useAuthStore()
   const [showScoutPrompt, setShowScoutPrompt] = useState(false)
   const [nearestUnit, setNearestUnit] = useState(LOCAL_UNITS[0])
 

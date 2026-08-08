@@ -197,9 +197,7 @@ export default function ChallengeAttempt() {
           p_reason: 'challenge_complete',
           p_ref_id: data.id,
         }).then(() => {
-          // Fallback: if RPC not available, manually increment
-        }).catch(() => {
-          // Silently handle if RPC doesn't exist yet — points_ledger insert is the source of truth
+          // Points awarded via RPC
         })
       }
 
