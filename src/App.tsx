@@ -52,15 +52,101 @@ function PageLoader() {
 
 function HomePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-bsp-green">
-          ScoutChase Taguig
-        </h1>
-        <p className="text-muted-foreground">
-          Heritage exploration and community engagement platform
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="bg-forest-green text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h1 className="text-4xl md:text-5xl font-bold">
+            ScoutChase Taguig
+          </h1>
+          <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+            Heritage exploration and community engagement platform for the Boy Scouts of the Philippines — Taguig City Council
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <a
+              href="/register"
+              className="inline-flex items-center justify-center px-8 py-3 bg-bsp-gold text-black font-semibold rounded-lg hover:bg-bsp-gold/90 transition-colors min-h-[44px]"
+            >
+              Get Started
+            </a>
+            <a
+              href="/login"
+              className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors min-h-[44px]"
+            >
+              Sign In
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-12">
+            Explore, Serve, Achieve
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center space-y-3 p-6 rounded-lg border border-border">
+              <div className="text-4xl">🗺️</div>
+              <h3 className="text-lg font-semibold text-foreground">Heritage Trails</h3>
+              <p className="text-sm text-muted-foreground">
+                Discover Taguig's rich history through themed trails. Scan QR codes at heritage sites to unlock content and earn points.
+              </p>
+            </div>
+            <div className="text-center space-y-3 p-6 rounded-lg border border-border">
+              <div className="text-4xl">🤝</div>
+              <h3 className="text-lg font-semibold text-foreground">Community Service</h3>
+              <p className="text-sm text-muted-foreground">
+                Log service hours, participate in clean-up drives, tree planting, and heritage documentation missions.
+              </p>
+            </div>
+            <div className="text-center space-y-3 p-6 rounded-lg border border-border">
+              <div className="text-4xl">🏆</div>
+              <h3 className="text-lg font-semibold text-foreground">Badges & Leaderboard</h3>
+              <p className="text-sm text-muted-foreground">
+                Earn digital badges, climb the leaderboard, and build your Digital Passport with achievements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 px-4 bg-muted/50">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl font-bold text-foreground">Ready to explore?</h2>
+          <p className="text-muted-foreground">
+            Join thousands of scouts discovering Taguig's heritage sites, completing challenges, and serving the community.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/join-scouting"
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors min-h-[44px]"
+            >
+              Join Scouting
+            </a>
+            <a
+              href="/partners"
+              className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-muted transition-colors min-h-[44px]"
+            >
+              Our Partners
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 border-t text-center">
+        <p className="text-sm text-muted-foreground">
+          ScoutChase Taguig — A BSP Taguig City Council Initiative
         </p>
-      </div>
+        <div className="mt-3 flex flex-wrap justify-center gap-4">
+          <a href="/login" className="text-sm text-primary hover:underline">Sign In</a>
+          <a href="/register" className="text-sm text-primary hover:underline">Register</a>
+          <a href="/join-scouting" className="text-sm text-primary hover:underline">Join Scouting</a>
+          <a href="/partners" className="text-sm text-primary hover:underline">Partners</a>
+        </div>
+      </footer>
     </div>
   )
 }
