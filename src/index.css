@@ -1,0 +1,269 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 130 54% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 130 54% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 130 54% 10%;
+
+    /* Forest Green #1B5E20 → HSL ~125 72% 24% */
+    --primary: 125 72% 24%;
+    --primary-foreground: 60 100% 97%;
+
+    /* Gold #FFD700 based secondary */
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 130 54% 10%;
+
+    --muted: 120 10% 96%;
+    --muted-foreground: 130 10% 40%;
+
+    /* Deep Red #B71C1C → HSL 0 73% 41% */
+    --destructive: 0 73% 41%;
+    --destructive-foreground: 0 0% 98%;
+
+    --accent: 120 10% 94%;
+    --accent-foreground: 125 72% 24%;
+
+    --border: 120 10% 90%;
+    --input: 120 10% 90%;
+    --ring: 125 72% 24%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 130 50% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 130 50% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 130 50% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 125 72% 35%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 130 54% 10%;
+
+    --muted: 130 30% 15%;
+    --muted-foreground: 120 10% 65%;
+
+    --destructive: 0 73% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --accent: 130 30% 15%;
+    --accent-foreground: 125 72% 55%;
+
+    --border: 130 30% 18%;
+    --input: 130 30% 18%;
+    --ring: 125 72% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    /* Req 20.5: Minimum body font 16px base for accessibility */
+    font-size: 16px;
+    overflow-x: hidden;
+    /* Ensure text scales up to 200% zoom without content loss */
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Req 20.3: Global visible focus indicator for keyboard navigation (WCAG 2.1 AA) */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Remove default focus ring for mouse users (focus-visible handles keyboard) */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Req 20.5: Scalable text - use rem/em units, no fixed px for text */
+  /* Ensure content reflows at 200% zoom without horizontal scrolling */
+  @media (min-resolution: 192dpi) {
+    html {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Mobile-first responsive design (Req 19.1, 19.4, 19.5) */
+@layer components {
+  /* Minimum 44×44px tap targets for all interactive elements */
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea,
+  [tabindex]:not([tabindex="-1"]) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Ensure inputs in forms don't enforce min-width awkwardly in flex layouts */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Responsive container that adapts 320px-1920px without horizontal scroll */
+  .responsive-container {
+    width: 100%;
+    max-width: 1920px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .responsive-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .responsive-container {
+      padding-inline: 2rem;
+    }
+  }
+}
+
+/* Req 20.1: High-contrast color adjustments for WCAG 2.1 AA compliance */
+/* 4.5:1 for normal text, 3:1 for large text (18px+ or 14px+ bold) */
+@layer base {
+  /* Ensure muted-foreground meets 4.5:1 against background */
+  :root {
+    --muted-foreground: 130 10% 35%;
+  }
+  .dark {
+    --muted-foreground: 120 10% 70%;
+  }
+}
+
+/* Req 20.3: Skip-to-content link for keyboard navigation */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Req 20.2: Screen-reader only class for visually hidden text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Req 20.6: Ensure minimum 44x44px interactive targets */
+@layer components {
+  /* Increased specificity for touch targets on interactive elements */
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"],
+  summary {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Custom Leaflet marker styles */
+.heritage-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Lazy loading fallback spinner */
+.lazy-loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+/* Optimize image rendering for performance */
+img {
+  content-visibility: auto;
+}
+
+/* Reduce layout shifts with aspect-ratio hints */
+img[width][height] {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Req 20.3: Respect user motion preferences for animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Req 20.5: Ensure text scales properly at 200% zoom without horizontal scroll */
+@media (min-width: 320px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Prevent fixed-width elements from causing horizontal overflow at zoom */
+  img,
+  video,
+  iframe,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
